@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
-import FeedbackOptions from './FeedbackOptions';
-import Section from './Section';
-import Statistics from './Statistics';
-import Notification from './Notofication';
-import styled from '@emotion/styled';
+/** @jsxImportSource @emotion/react */
+import React, { Component } from "react";
+import FeedbackOptions from "./FeedbackOptions";
+import Section from "./Section";
+import Statistics from "./Statistics";
+import Notification from "./Notification";
+import { css } from "@emotion/react";
 
-const labels = ['Good', 'Neutral', 'Bad'];
-
-const Fancy = styled.div({
-  textAlign: 'left',
-});
+const labels = ["Good", "Neutral", "Bad"];
 
 class FeedbackStats extends Component {
   state = {
@@ -18,11 +15,11 @@ class FeedbackStats extends Component {
     bad: 0,
   };
 
-  handleClick = label => {
+  handleClick = (label) => {
     const { good, neutral, bad } = this.state;
-    label === 'Good' && this.setState({ good: good + 1 });
-    label === 'Neutral' && this.setState({ neutral: neutral + 1 });
-    label === 'Bad' && this.setState({ bad: bad + 1 });
+    label === "Good" && this.setState({ good: good + 1 });
+    label === "Neutral" && this.setState({ neutral: neutral + 1 });
+    label === "Bad" && this.setState({ bad: bad + 1 });
   };
 
   countTotalFeedback = () => {
@@ -42,18 +39,32 @@ class FeedbackStats extends Component {
 
     return total === 0 ? (
       <div>
-        <Fancy>
+        <div
+          css={css`
+            text-align: left;
+          `}
+        >
           <Section title="Please leave feedback" />
-          <FeedbackOptions options={labels} onLeaveFeedback={this.handleClick} />
+          <FeedbackOptions
+            options={labels}
+            onLeaveFeedback={this.handleClick}
+          />
           <Section title="Statistics" />
           <Notification message="There is no feedback" />
-        </Fancy>
+        </div>
       </div>
     ) : (
       <div>
-        <Fancy>
+        <div
+          css={css`
+            text-align: left;
+          `}
+        >
           <Section title="Please leave feedback" />
-          <FeedbackOptions options={labels} onLeaveFeedback={this.handleClick} />
+          <FeedbackOptions
+            options={labels}
+            onLeaveFeedback={this.handleClick}
+          />
           <Statistics
             good={this.state.good}
             neutral={this.state.neutral}
@@ -61,7 +72,7 @@ class FeedbackStats extends Component {
             total={total}
             positivePercentage={positive}
           ></Statistics>
-        </Fancy>
+        </div>
       </div>
     );
   }

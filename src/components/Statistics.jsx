@@ -1,19 +1,20 @@
-import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-
-const Fancy = styled.div({
-  fontWeight: 600,
-});
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+import PropTypes from "prop-types";
 
 function Statistics({ good, neutral, bad, total, positivePercentage }) {
   return (
-    <Fancy>
+    <div
+      css={css`
+        font-weight: 600;
+      `}
+    >
       <p>Good:{good}</p>
       <p>Neutral:{neutral}</p>
       <p>Bad:{bad}</p>
       <p>Total:{total}</p>
       <p>Positive feedback:{Math.round(positivePercentage)}%</p>
-    </Fancy>
+    </div>
   );
 }
 
